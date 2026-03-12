@@ -10,6 +10,7 @@
 - [Session 01 — Linux Scavenger Hunt](#session-01--linux-scavenger-hunt)
 - [Session 02 — Linux Permissions & Hardening](#session-02--linux-permissions--hardening)
 - [Session 03 — Stream Editing & Automation](#session-03--stream-editing--automation)
+- [TLAB-01 — Operation Clean Sweep](#tlab-01--operation-clean-sweep)
 
 ---
 
@@ -47,7 +48,7 @@ A hands-on lab focused on diagnosing and fixing Linux permission misconfiguratio
 Identified and remediated permission misconfigurations across three targets — a locked vault directory, an unreadable secrets file, and a critically over-permissioned `/etc/shadow` file.
 
 ### 📄 Artifact
-Remediation steps automated using `artifact/harden.sh`.
+All findings documented in`artifact/harden.sh`.
 
 ---
 
@@ -66,7 +67,26 @@ A hands-on lab focused on stream editing and automation using `grep`, `sed`, and
 Parsed `auth.log` to count failed login attempts and analyzed `access.log` to extract unique attacker IPs from SQL injection attempts using `grep`, `awk`, and `sort | uniq`.
 
 ### 📄 Artifact
-All findings documented in `artifact/threat_ips.txt.txt`.
+All findings documented in `artifact/threat_ips.txt`.
+
+---
+
+## 🔴 TLAB-01 — Operation Clean Sweep
+
+### Overview
+A synthesized threat lab combining navigation, permissions, and stream editing skills to simulate a real incident response scenario. A compromised server was left with a sabotaged log file and broken directory structure — the objective was to navigate the environment, restore access, and extract forensic evidence.
+
+### 🎯 Objectives
+- Locate hidden evidence in a non-standard directory
+- Repair broken permissions to restore file access
+- Parse and clean a 5,000 line log file to extract attacker IPs
+- Produce a final threat report as a forensic artifact
+
+### 📁 Findings
+Located a hidden `.evidence_cache` directory in `/var/tmp/` with permissions set to `000`. Restored read access to `raw_incident.log`, filtered `CRITICAL` log entries, stripped malware user-agent strings using `sed`, and extracted a deduplicated list of unique attacker IPs using `awk` and `sort | uniq`.
+
+### 📄 Artifact
+All findings documented in `artifact/final_threat_report.txt`.
 
 ---
 
