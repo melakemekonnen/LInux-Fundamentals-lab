@@ -1,87 +1,73 @@
-# 🗺️ Session 01 — Linux Scavenger Hunt
+# 🗺️ Linux Security Labs — Portfolio
 
-## Overview
-
-This repository documents the completion of **Session 01: The Scavenger Hunt**, a hands-on Linux navigation lab focused on mapping the Filesystem Hierarchy Standard (FHS), navigating system directories, and extracting hidden system intelligence using core terminal commands.
-
-The lab was completed by **SSH-ing into a Linux VM using VS Code** (Remote - SSH extension), allowing all terminal work to be done directly from the VS Code integrated terminal over a secure remote connection.
+> A collection of hands-on Linux security labs completed as part of a cybersecurity fundamentals course.
+> All labs were performed by **SSH-ing from a Mac into a Linux VM using VS Code** (Remote - SSH extension).
 
 ---
 
-## 🎯 Objectives
+## 📚 Table of Contents
 
+- [Session 01 — Linux Scavenger Hunt](#session-01--linux-scavenger-hunt)
+- [Session 02 — Linux Permissions & Hardening](#session-02--linux-permissions--hardening)
+- [Session 03 — Stream Editing & Automation](#session-03--stream-editing--automation)
+
+---
+
+## 🗺️ Session 01 — Linux Scavenger Hunt
+
+### Overview
+A hands-on lab focused on mapping the Filesystem Hierarchy Standard (FHS), navigating system directories, and extracting hidden system intelligence using core terminal commands.
+
+### 🎯 Objectives
 - Navigate the Linux filesystem using absolute and relative paths
 - Explore restricted and hidden directories
 - Extract system artifacts and document findings
 - Push a discovery report to a GitHub portfolio
 
----
+### 📁 Findings
+Navigated to `/var/log`, `/opt/alpha`, and `/var/tmp/.blackout` to verify system logs, extract a mission message, and retrieve a hidden digital token.
 
-## 📁 Targets & Findings
-
-### Target 1 — System Logs
-- **Location:** `/var/log`
-- **Files Verified:** `syslog`, `auth.log`
-
-### Target 2 — Secret Mission
-- **Location:** `/opt/alpha/mission.txt`
-- **Contents:** Mission secure message (documented in `discovery.txt`)
-
-### Target 3 — Hidden Token
-- **Location:** `/var/tmp/.blackout/token.txt`
-- **Contents:** Digital token value (documented in `discovery.txt`)
+### 📄 Artifact
+Findings documented in `artifact/discovery.txt`.
 
 ---
-
-## 📄 Artifact
-
-The findings were documented in `discovery.txt`.
-
----
-
 
 ## 🛡️ Session 02 — Linux Permissions & Hardening
 
-## Overview
+### Overview
+A hands-on lab focused on diagnosing and fixing Linux permission misconfigurations using core security commands — `chmod`, `chown`, and `ls`.
 
-This section documents **Session 02**, a hands-on lab focused on diagnosing and fixing Linux permission misconfigurations using core security commands such as `chmod`, `chown`, and `ls`.
-
----
-
-## 🎯 Objectives
-
+### 🎯 Objectives
 - Audit file and directory permissions
 - Repair restricted access using `chmod`
 - Restore secure ownership using `chown`
 - Automate remediation using a hardening script
 
----
+### 📁 Findings
+Identified and remediated permission misconfigurations across three targets — a locked vault directory, an unreadable secrets file, and a critically over-permissioned `/etc/shadow` file.
 
-## 📁 Targets & Fixes
-
-### Target 1 — Vault Directory Lockout
-- **Location:** `~/Vault`
-- **Issue:** Directory had no permissions (`d---------`)
-- **Fix Applied:** `chmod 700 ~/Vault`
-
-### Target 2 — Locked Secret File
-- **Location:** `~/Vault/secrets.txt`
-- **Issue:** File could not be read
-- **Fix Applied:** `chmod 600 ~/Vault/secrets.txt`
-
-### Target 3 — System Identity File
-- **Location:** `/etc/shadow`
-- **Issue:** Permissions incorrectly set to `777`
-- **Fix Applied:**  
-  - `sudo chmod 640 /etc/shadow`  
-  - `sudo chown root:shadow /etc/shadow`
+### 📄 Artifact
+Remediation steps automated using `artifact/harden.sh`.
 
 ---
 
-## 📄 Artifact
+## ⚙️ Session 03 — Stream Editing & Automation
 
-The remediation steps were automated using **`harden.sh`**.
+### Overview
+A hands-on lab focused on stream editing and automation using `grep`, `sed`, and `awk`. The exercises demonstrated filtering, parsing, and processing system and web server logs to detect failed login attempts and malicious activity.
+
+### 🎯 Objectives
+- Filter logs to find relevant events using `grep`
+- Extract and format data using `awk`
+- Remove duplicates and clean data using `sort | uniq`
+- Save all findings as a separate artifact for security analysis
+
+### 📁 Findings
+Parsed `auth.log` to count failed login attempts and analyzed `access.log` to extract unique attacker IPs from SQL injection attempts using `grep`, `awk`, and `sort | uniq`.
+
+### 📄 Artifact
+All findings documented in `artifact/threat_ips.txt.txt`.
 
 ---
 
-*Completed as part of a Linux fundamentals course — Session 02.*
+*Completed as part of a Linux fundamentals & cybersecurity course.*
